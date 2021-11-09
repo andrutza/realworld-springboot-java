@@ -1,0 +1,51 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id "org.unbroken-dome.test-sets" version '3.0.1'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test:4.2.3.RELEASE'
+
+	compileOnly 'org.projectlombok:lombok:1.18.4'
+	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+
+	implementation 'org.modelmapper:modelmapper:2.3.0'
+
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.0'
+
+	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
+
+	annotationProcessor ('org.hibernate:hibernate-jpamodelgen:5.4.12.Final')
+
+	testImplementation(platform('org.junit:junit-bom:5.7.0'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
+
+	testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
+
+}
+
+test {
+	useJUnitPlatform()
+}
+
+sourceSets.main.java.srcDirs('build/classes/java/main', 'src/main/java')
